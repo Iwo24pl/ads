@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Video Ad</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        .video-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black; /* Background color for when the video aspect ratio does not match */
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the video covers the entire container */
+            pointer-events: none; /* Disable interaction with the video */
+        }
+    </style>
+</head>
+<body>
+
+<div class="video-container">
+    <video id="adVideo" autoplay muted></video>
+</div>
+
+<script>
+    // Array of video file names
+    const videos = ["video1.mp4", "video2.mp4", "video3.mp4", "video4.mp4", "video5.mp4", "video6.mp4", "video7.mp4"];
+
+    // Function to get a random video
+    function getRandomVideo() {
+        const randomIndex = Math.floor(Math.random() * videos.length);
+        return videos[randomIndex];
+    }
+
+    // Function to set a random video and play it
+    function playRandomVideo() {
+        const adVideo = document.getElementById('adVideo');
+        adVideo.src = getRandomVideo();
+        adVideo.play();
+    }
+
+    // Play a random video when the page loads
+    playRandomVideo();
+
+    // Load and play a new random video when the current one ends
+    document.getElementById('adVideo').addEventListener('ended', playRandomVideo);
+</script>
+
+</body>
+</html>
